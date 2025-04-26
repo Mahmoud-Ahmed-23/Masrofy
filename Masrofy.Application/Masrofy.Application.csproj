@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Masrofy.Infrastructure\Masrofy.Infrastructure.csproj" />
+    <ProjectReference Include="..\Masrofy.Shared\Masrofy.Shared.csproj" />
+  </ItemGroup>
+
+</Project>
