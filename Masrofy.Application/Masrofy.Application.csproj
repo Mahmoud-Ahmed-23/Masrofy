@@ -1,15 +1,30 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Masrofy.Infrastructure\Masrofy.Infrastructure.csproj" />
-    <ProjectReference Include="..\Masrofy.Persistence\Masrofy.Persistence.csproj" />
-    <ProjectReference Include="..\Masrofy.Shared\Masrofy.Shared.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="14.0.0" />
+		<PackageReference Include="FluentValidation" Version="11.11.0" />
+		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
+		<PackageReference Include="MediatR" Version="12.5.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Masrofy.Application.Abstraction\Masrofy.Application.Abstraction.csproj" />
+		<ProjectReference Include="..\Masrofy.Infrastructure\Masrofy.Infrastructure.csproj" />
+		<ProjectReference Include="..\Masrofy.Persistence\Masrofy.Persistence.csproj" />
+		<ProjectReference Include="..\Masrofy.Shared\Masrofy.Shared.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Features\Identity\Account\Commands\Validators\" />
+		<Folder Include="Features\Identity\Authentication\Results\" />
+		<Folder Include="Features\Identity\Authentication\Queries\" />
+	</ItemGroup>
 
 </Project>

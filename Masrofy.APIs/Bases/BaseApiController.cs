@@ -6,13 +6,12 @@ using System.Net;
 
 namespace Masrofy.APIs.Bases
 {
-	[Route("api/[controller]")]
 	[ApiController]
 	public class BaseApiController : ControllerBase
 	{
-		private IMediator mediator;
-		protected IMediator Mediator => mediator ??= HttpContext.RequestServices.GetService<IMediator>()!;
-		
+		private IMediator _mediator;
+		protected IMediator mediator => _mediator ??= HttpContext.RequestServices.GetService<IMediator>()!;
+
 		public ObjectResult NewResult<T>(Response<T> response)
 		{
 			switch (response.StatusCode)

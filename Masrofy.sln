@@ -25,6 +25,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{ABD470
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Masrofy.Persistence", "Masrofy.Persistence\Masrofy.Persistence.csproj", "{DE8D6103-1892-49C4-A816-DD5A4811C7B9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Masrofy.Application.Abstraction", "Masrofy.Application.Abstraction\Masrofy.Application.Abstraction.csproj", "{364ADABA-2FDE-4F43-B02E-2CAE4CE55345}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{DE8D6103-1892-49C4-A816-DD5A4811C7B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE8D6103-1892-49C4-A816-DD5A4811C7B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE8D6103-1892-49C4-A816-DD5A4811C7B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{364ADABA-2FDE-4F43-B02E-2CAE4CE55345}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{364ADABA-2FDE-4F43-B02E-2CAE4CE55345}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{364ADABA-2FDE-4F43-B02E-2CAE4CE55345}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{364ADABA-2FDE-4F43-B02E-2CAE4CE55345}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,6 +76,7 @@ Global
 		{272F2124-304D-4E89-B719-671F3DA19263} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{ABD470BE-6585-4FD6-901F-69D97BFFDE72} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{DE8D6103-1892-49C4-A816-DD5A4811C7B9} = {272F2124-304D-4E89-B719-671F3DA19263}
+		{364ADABA-2FDE-4F43-B02E-2CAE4CE55345} = {E0B27F85-C72E-4043-B1A6-6794919C335A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {66390564-1321-4781-99C3-BA8AC523DB3C}

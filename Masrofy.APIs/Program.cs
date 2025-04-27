@@ -1,5 +1,6 @@
 
 using Masrofy.APIs.Extensions;
+using Masrofy.Application;
 using Masrofy.Persistence;
 using System.Threading.Tasks;
 
@@ -14,22 +15,30 @@ namespace Masrofy.APIs
 			// Add services to the container.
 
 			builder.Services.AddControllers();
-			// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-			builder.Services.AddOpenApi();
 
-			builder.Services.AddPersistenceServices(builder.Configuration);
+			builder.Services.AddEndpointsApiExplorer();
+
+			builder.Services.AddIdentityServices(builder.Configuration);
+
+			builder.Services
+				.AddPersistenceServices(builder.Configuration)
+				.AddApplicationServices(builder.Configuration);
+
+			builder.Services.AddSwaggerGen();
 
 			var app = builder.Build();
 
-			await app.InitializeContextAsynce();
-
-			// Configure the HTTP request pipeline.
 			if (app.Environment.IsDevelopment())
 			{
-				app.MapOpenApi();
+				app.UseSwagger();
+				app.UseSwaggerUI();
 			}
 
+			await app.InitializeContextAsynce();
+
 			app.UseHttpsRedirection();
+
+			app.UseAuthentication();
 
 			app.UseAuthorization();
 
