@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Masrofy.Application.Bases
 {
-	internal class ResponseHandler
+	public class ResponseHandler
 	{
 		public Response<T> Deleted<T>(string Message = null!)
 		{
