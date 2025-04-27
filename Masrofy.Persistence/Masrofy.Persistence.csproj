@@ -7,9 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Masrofy.Infrastructure\Masrofy.Infrastructure.csproj" />
-    <ProjectReference Include="..\Masrofy.Persistence\Masrofy.Persistence.csproj" />
+    <ProjectReference Include="..\Masrofy.Domain\Masrofy.Domain.csproj" />
     <ProjectReference Include="..\Masrofy.Shared\Masrofy.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="_Data\Migrations\" />
+    <Folder Include="_Data\Interceptors\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.4" />
   </ItemGroup>
 
 </Project>
