@@ -1,5 +1,6 @@
 ﻿using Masrofy.Domain.Contracts.Persistence;
 using Masrofy.Persistence._Data;
+using Masrofy.Persistence.Repositories.GenericRepository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +20,10 @@ namespace Masrofy.Persistence
 				options.UseSqlServer(configuration.GetConnectionString("MasrofyContext")));
 
 			services.AddScoped(typeof(IDbInitializer), typeof(MasrofyDbInitializer));
+
+			services.AddScoped(typeof(IGenericRepository<,>), typeof(GenericRepository<,>));
+
+			services.AddScoped<IUnitOfWork, UnitOfWork.UnitOfWork>();
 
 			return services;
 		}
