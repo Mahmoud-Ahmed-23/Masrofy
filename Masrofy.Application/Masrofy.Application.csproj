@@ -22,7 +22,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Features\Identity\Account\Commands\Validators\" />
 		<Folder Include="Features\Identity\Authentication\Results\" />
 		<Folder Include="Features\Identity\Authentication\Queries\" />
 	</ItemGroup>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Masrofy.Domain.Entities.Products;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Masrofy.Persistence._Data
@@ -13,5 +14,10 @@ namespace Masrofy.Persistence._Data
 			base.OnModelCreating(builder);
 			builder.ApplyConfigurationsFromAssembly(typeof(AssymblyInformation).Assembly);
 		}
+
+		public DbSet<Product> Products { get; set; }
+		public DbSet<Brand> Brands { get; set; }
+		public DbSet<Category> Categories { get; set; }
+
 	}
 }

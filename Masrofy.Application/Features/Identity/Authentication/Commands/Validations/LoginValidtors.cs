@@ -19,11 +19,6 @@ namespace Masrofy.Application.Features.Identity.Authentication.Commands.Validati
 				.Matches(ValidatorPatterns.Email)
 				.WithMessage("Email is not valid");
 
-			RuleFor(x => x.Password)
-				.NotEmpty()
-				.WithMessage("Password is required")
-				.Matches(ValidatorPatterns.Password)
-				.WithMessage("Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character");
 		}
 	}
 }

@@ -13,5 +13,7 @@ namespace Masrofy.Domain.Entities.Identity
 
 		public string? ImageUrl { get; set; }
 
+		public virtual ICollection<RefreshToken> RefreshTokens { get; set; } = new List<RefreshToken>();
+
 	}
 }

@@ -9,5 +9,6 @@ namespace Masrofy.Domain.Contracts.Persistence
 	public interface IDbInitializer
 	{
 		Task InitializeAsynce();
+		Task SeedAsync();
 	}
 }
