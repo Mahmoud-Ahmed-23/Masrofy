@@ -16,7 +16,9 @@ namespace Masrofy.Application.Features.Identity.Account.Commands.Handlers
 {
 	internal class AccountCommandHandler
 		: ResponseHandler,
-		IRequestHandler<RegisterCommand, Response<ReturnUserDto>>
+		IRequestHandler<RegisterCommand, Response<ReturnUserDto>>,
+		IRequestHandler<EditUserCommand, Response<ReturnUserDto>>,
+		IRequestHandler<ChangePasswordCommand, Response<string>>
 	{
 		private readonly IAccountService _accountService;
 		private readonly IMapper _mapper;
@@ -40,6 +42,41 @@ namespace Masrofy.Application.Features.Identity.Account.Commands.Handlers
 				return BadRequest<ReturnUserDto>("User Creation Failed");
 
 			return Success(result, "Register Successfully :)");
+		}
+
+		public async Task<Response<ReturnUserDto>> Handle(EditUserCommand request, CancellationToken cancellationToken)
+		{
+			var userDto = request.UpdateUserDto;
+
+			var result = await _accountService.UpdateUser(userDto);
+
+			if (result.Status == Status.NotFound)
+				return BadRequest<ReturnUserDto>("User Not Found");
+
+			if (result.Status == Status.BadRequest)
+				return BadRequest<ReturnUserDto>("User Update Failed");
+
+			return Success(result, "User Updated Successfully :)");
+		}
+
+		public async Task<Response<string>> Handle(ChangePasswordCommand request, CancellationToken cancellationToken)
+		{
+			var changePasswordDto = new ChangePasswordDto
+			{
+				Id = request.UserId,
+				OldPassword = request.OldPassword,
+				NewPassword = request.NewPassword
+			};
+
+			var result = await _accountService.ChangePassword(changePasswordDto);
+
+			if (result is null)
+				return BadRequest<string>("User Not Found");
+
+			if (result == "BadRequest")
+				return BadRequest<string>("User Update Failed");
+
+			return Success(result, "User Updated Successfully :)");
 		}
 	}
 }

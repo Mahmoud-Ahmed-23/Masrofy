@@ -16,5 +16,19 @@ namespace Masrofy.APIs.Controllers.Identity.Authentication
 			return NewResult(result);
 		}
 
+		[HttpPost(Router.AuthenticationRouting.RefreshToken)]
+		public async Task<ActionResult<string>> RefreshToken([FromBody] RefreshTokenCommand command)
+		{
+			var result = await mediator.Send(command);
+			return NewResult(result);
+		}
+
+		[HttpPost(Router.AuthenticationRouting.RevokeRefreshToken)]
+		public async Task<ActionResult<string>> RevokeRefreshToken([FromBody] RevokeRefreshTokenCommand command)
+		{
+			var result = await mediator.Send(command);
+			return NewResult(result);
+		}
+
 	}
 }

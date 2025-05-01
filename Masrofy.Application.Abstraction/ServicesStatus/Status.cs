@@ -9,6 +9,7 @@ namespace Masrofy.Application.Abstraction.ServicesStatus
 	public static class Status
 	{
 		public static string NotFound = "NotFound";
+		public static string TokenNotFound = "TokenNotFound";
 		public static string BadRequest = "BadRequest";
 		public static string Unauthorized = "Unauthorized";
 		public static string Success = "Success";

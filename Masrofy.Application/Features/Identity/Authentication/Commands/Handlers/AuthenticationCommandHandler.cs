@@ -1,20 +1,18 @@
 ﻿using Masrofy.Application.Abstraction.Models.Identity;
+using Masrofy.Application.Abstraction.Models.Identity.Authentication;
 using Masrofy.Application.Abstraction.Services.Authentication;
 using Masrofy.Application.Abstraction.ServicesStatus;
 using Masrofy.Application.Bases;
 using Masrofy.Application.Features.Identity.Authentication.Commands.Models;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Masrofy.Application.Features.Identity.Authentication.Commands.Handlers
 {
 	public class AuthenticationCommandHandler
 		: ResponseHandler,
-		IRequestHandler<LoginCommand, Response<ReturnUserDto>>
+		IRequestHandler<LoginCommand, Response<ReturnUserDto>>,
+		IRequestHandler<RefreshTokenCommand, Response<ReturnUserDto>>,
+		IRequestHandler<RevokeRefreshTokenCommand, Response<bool>>
 	{
 		private readonly IAuthService _authService;
 
@@ -42,6 +40,32 @@ namespace Masrofy.Application.Features.Identity.Authentication.Commands.Handlers
 			else
 				return BadRequest<ReturnUserDto>("Bad Request");
 
+		}
+
+		public async Task<Response<ReturnUserDto>> Handle(RefreshTokenCommand request, CancellationToken cancellationToken)
+		{
+			var user = await _authService.GetRefreshToken(new RefreshDto { Token = request.Token, RefreshToken = request.RefreshToken }, cancellationToken);
+
+			if (user.Status == Status.NotFound)
+				return NotFound<ReturnUserDto>("User is Not Found");
+
+			else if (user.Status == Status.TokenNotFound)
+				return BadRequest<ReturnUserDto>("Token Not Found");
+
+			else if (user.Status == Status.Success)
+				return Success(user, "Refresh Token Successfully :)");
+			else
+				return BadRequest<ReturnUserDto>("Bad Request");
+		}
+
+		public async Task<Response<bool>> Handle(RevokeRefreshTokenCommand request, CancellationToken cancellationToken)
+		{
+			var result = await _authService.RevokeRefreshToken(new RefreshDto { Token = request.Token, RefreshToken = request.RefreshToken }, cancellationToken);
+			
+			if (result)
+				return Success(true, "Refresh Token Revoked Successfully :)");
+			else
+				return BadRequest<bool>("Bad Request");
 		}
 	}
 }

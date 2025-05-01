@@ -1,9 +1,11 @@
 ﻿using FluentValidation;
 using Masrofy.Application.Abstraction.Services.Account;
 using Masrofy.Application.Abstraction.Services.Authentication;
+using Masrofy.Application.Features.Behaviors;
 using Masrofy.Application.Services.Account;
 using Masrofy.Application.Services.Authentication;
 using Masrofy.Shared.Settings;
+using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,6 +23,9 @@ namespace Masrofy.Application
 		public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
 		{
 			services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
+
+			services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+
 
 			services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

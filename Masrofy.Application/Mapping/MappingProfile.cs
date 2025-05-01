@@ -21,6 +21,12 @@ namespace Masrofy.Application.Mapping
 				.ForMember(dest => dest.NormalizedEmail, opt => opt.MapFrom(src => src.Email.ToUpper()))
 				.ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email));
 
+			CreateMap<UpdateUserDto, ApplicationUser>()
+				.ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.Email))
+				.ForMember(dest => dest.NormalizedUserName, opt => opt.MapFrom(src => src.Email.ToUpper()))
+				.ForMember(dest => dest.NormalizedEmail, opt => opt.MapFrom(src => src.Email.ToUpper()))
+				.ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email));
+
 			CreateMap<ApplicationUser, ReturnUserDto>();
 			CreateMap<RegisterCommand, CreateUserDto>();
 		}

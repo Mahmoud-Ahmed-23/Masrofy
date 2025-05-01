@@ -1,5 +1,6 @@
 
 using Masrofy.APIs.Extensions;
+using Masrofy.APIs.Middlewares;
 using Masrofy.Application;
 using Masrofy.Persistence;
 using System.Threading.Tasks;
@@ -35,6 +36,8 @@ namespace Masrofy.APIs
 			}
 
 			await app.InitializeContextAsynce();
+
+			app.UseMiddleware<ErrorHandlerMiddleware>();
 
 			app.UseHttpsRedirection();
 

@@ -62,13 +62,54 @@ namespace Masrofy.Application.Services.Account
 
 		}
 
-		public Task<string> ChangePassword(ChangePasswordDto changePasswordDto)
+		public async Task<string> ChangePassword(ChangePasswordDto changePasswordDto)
 		{
-			throw new NotImplementedException();
+			var user = await _userManager.FindByIdAsync(changePasswordDto.Id);
+
+			if (user is null)
+			{
+				return Status.NotFound;
+			}
+
+			var result = await _userManager.ChangePasswordAsync(user, changePasswordDto.OldPassword, changePasswordDto.NewPassword);
+			
+			if (!result.Succeeded)
+			{
+				return Status.BadRequest;
+			}
+
+			return Status.Success;
 		}
-		public Task<ReturnUserDto> UpdateUser(UpdateUserDto userDto)
+		public async Task<ReturnUserDto> UpdateUser(UpdateUserDto userDto)
 		{
-			throw new NotImplementedException();
+			var user = await _userManager.FindByIdAsync(userDto.Id);
+
+			if (user is null)
+			{
+				return new ReturnUserDto()
+				{
+					Status = Status.NotFound
+				};
+			}
+
+			var updatedUser = _mapper.Map(userDto, user);
+
+			var result = await _userManager.UpdateAsync(user);
+
+			if (!result.Succeeded)
+			{
+				return new ReturnUserDto()
+				{
+					Status = Status.BadRequest
+				};
+			}
+
+			var response = _mapper.Map<ReturnUserDto>(updatedUser);
+
+			response.Status = Status.Success;
+
+			return response;
 		}
+
 	}
 }
